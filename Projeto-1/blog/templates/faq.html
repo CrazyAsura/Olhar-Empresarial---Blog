@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - Perguntas Frequentes | Blog{% endblock %}
+
+{% block meta %}
+<meta name="description" content="Encontre respostas para as perguntas mais frequentes sobre nosso blog. Saiba como criar conta, comentar, receber notificações e compartilhar conteúdo.">
+<meta name="keywords" content="FAQ, perguntas frequentes, blog, ajuda, suporte, dúvidas">
+<meta property="og:title" content="FAQ - Perguntas Frequentes | Blog">
+<meta property="og:description" content="Encontre respostas para as perguntas mais frequentes sobre nosso blog.">
+<meta property="og:type" content="website">
+{% endblock %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+{% block content %}
+<main class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen py-16 px-6 sm:px-8 lg:px-12">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl font-extrabold text-gray-900 text-center mb-16 animate__animated animate__fadeIn">
+            Perguntas Frequentes
+        </h1>
+        
+        <section class="space-y-8" aria-label="Perguntas frequentes">
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate__animated animate__fadeInUp">
+                <button onclick="toggleAnswer(this)" class="w-full px-8 py-6 text-left focus:outline-none transition-all duration-300 hover:bg-gray-50" aria-expanded="false">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-semibold text-gray-900 hover:text-indigo-600">Como posso criar uma conta no blog?</span>
+                        <svg class="h-7 w-7 text-indigo-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="mt-4 text-lg text-gray-600 transition-all duration-300 hidden answer" role="region">
+                        Para criar uma conta, clique no botão "Registrar" no topo da página. Preencha seus dados pessoais e crie uma senha. Após confirmar seu e-mail, você poderá começar a interagir com o blog.
+                    </div>
+                </button>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                <button onclick="toggleAnswer(this)" class="w-full px-8 py-6 text-left focus:outline-none transition-all duration-300 hover:bg-gray-50" aria-expanded="false">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-semibold text-gray-900 hover:text-indigo-600">Como faço para comentar nas postagens?</span>
+                        <svg class="h-7 w-7 text-indigo-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="mt-4 text-lg text-gray-600 transition-all duration-300 hidden answer" role="region">
+                        Para comentar, você precisa estar logado em sua conta. Na parte inferior de cada postagem, você encontrará uma caixa de comentários onde poderá compartilhar suas opiniões.
+                    </div>
+                </button>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                <button onclick="toggleAnswer(this)" class="w-full px-8 py-6 text-left focus:outline-none transition-all duration-300 hover:bg-gray-50" aria-expanded="false">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-semibold text-gray-900 hover:text-indigo-600">Como posso receber notificações de novas postagens?</span>
+                        <svg class="h-7 w-7 text-indigo-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="mt-4 text-lg text-gray-600 transition-all duration-300 hidden answer" role="region">
+                        Você pode se inscrever em nossa newsletter na página inicial do blog. Além disso, pode ativar as notificações nas configurações da sua conta para receber alertas de novos conteúdos.
+                    </div>
+                </button>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+                <button onclick="toggleAnswer(this)" class="w-full px-8 py-6 text-left focus:outline-none transition-all duration-300 hover:bg-gray-50" aria-expanded="false">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-semibold text-gray-900 hover:text-indigo-600">Como posso compartilhar uma postagem?</span>
+                        <svg class="h-7 w-7 text-indigo-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="mt-4 text-lg text-gray-600 transition-all duration-300 hidden answer" role="region">
+                        Em cada postagem, você encontrará botões de compartilhamento para as principais redes sociais. Basta clicar no ícone da rede social desejada para compartilhar o conteúdo.
+                    </div>
+                </button>
+            </article>
+        </section>
+
+        <div class="mt-16 text-center animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+            <p class="text-xl text-gray-600 mb-4">Não encontrou o que procurava?</p>
+            <a href="{% url 'contact' %}" class="mt-2 inline-flex items-center px-8 py-4 border border-transparent text-lg font-semibold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                Entre em contato
+            </a>
+        </div>
+    </div>
+</main>
+
+<script>
+function toggleAnswer(button) {
+    const answer = button.querySelector('.answer');
+    const svg = button.querySelector('svg');
+    answer.classList.toggle('hidden');
+    svg.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    button.setAttribute('aria-expanded', !answer.classList.contains('hidden'));
+}
+</script>
+{% endblock %}

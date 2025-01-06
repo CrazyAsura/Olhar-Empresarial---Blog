@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - Blog{% endblock %}
+
+{% block content %}
+<main class="container mx-auto p-4">
+    <section class="max-w-4xl mx-auto">  
+        <section class="bg-white rounded-lg shadow-lg overflow-hidden">
+            {% if post.image %}
+            <figure>
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-96 object-cover" loading="lazy">
+                {% if post.image_caption %}
+                <figcaption class="text-sm text-gray-600 text-center mt-2">{{ post.image_caption }}</figcaption>
+                {% endif %}
+            </figure>
+            {% endif %}
+            <article class="p-6">
+                <header class="mb-6">
+                    <h1 class="text-3xl font-bold mb-3">{{ post.title }}</h1>
+                    {% if post.subtitle %}
+                    <p class="text-xl text-gray-700 mb-2">{{ post.subtitle }}</p>
+                    {% endif %}
+                    <div class="flex items-center text-gray-600 text-sm">
+                        {% if post.author %}
+                        <span class="mr-4"><i class="fas fa-user mr-1"></i> {{ post.author }}</span>
+                        {% endif %}
+                        <time datetime="{{ post.date_posted|date:'Y-m-d' }}" class="mr-4">
+                            <i class="fas fa-calendar mr-1"></i> {{ post.date_posted|date:"d/m/Y" }}
+                        </time>
+                        <span><i class="fas fa-eye mr-1"></i> {{ post.views }} visualizações</span>
+                    </div>
+                </header>
+                {% if post.resume %}
+                <section class="mb-6">
+                    <p class="text-gray-700 text-lg leading-relaxed">{{ post.resume }}</p>
+                </section>
+                {% endif %}
+
+                <section class="prose max-w-none mb-6">
+                    {{ post.content|safe }}
+                </section>
+
+                <section class="flex items-center space-x-4 mb-8 border-t border-b border-gray-200 py-4">
+                    <article class="flex items-center">
+                        <button class="flex items-center text-gray-600 hover:text-blue-500 transition focus:text-blue-500">
+
+                            <a href="{% if user in post.likes.all %}{% url 'remove_like' post.id %}{% else %}{% url 'add_like' post.id %}{% endif %}">
+                                <i class="fas fa-thumbs-up mr-1"></i> {{ post.like_count }}
+                            </a>
+                        </button>
+                        <button class="flex items-center text-gray-600 hover:text-red-500 transition focus:text-red-500 ml-4 ">
+
+                            <a href="{% if user in post.dislikes.all %}{% url 'remove_dislike' post.id %}{% else %}{% url 'add_dislike' post.id %}{% endif %}">
+                                <i class="fas fa-thumbs-down mr-1"></i> {{ post.dislike_count }}
+                            </a>
+                        </button>
+                    </article>
+                </section>
+                
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-6">Deixe seu comentário</h2>
+                    <form method="post" class="space-y-4">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
+                            Enviar comentário
+                        </button>
+                    </form>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-6">Comentários ({{ comments|length }})</h2>
+                    {% for comment in comments %}
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4 hover:shadow-md transition">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-semibold text-lg">{{ comment.name }}</h3>
+                            <time datetime="{{ comment.created_at|date:'Y-m-d H:i' }}" class="text-sm text-gray-500">
+                                {{ comment.created_at|date:"d/m/Y H:i" }}
+                            </time>
+                        </div>
+                        <p class="text-gray-700 mb-3 leading-relaxed">{{ comment.content }}</p>
+                        <div class="flex items-center space-x-4">
+                            <button class="flex items-center text-gray-600 hover:text-blue-500 transition">
+                                <i class="fas fa-thumbs-up mr-1"></i>
+                                <span>{{ comment.likes }}</span>
+                            </button>
+                            <button class="flex items-center text-gray-600 hover:text-red-500 transition">
+                                <i class="fas fa-thumbs-down mr-1"></i>
+                                <span>{{ comment.dislikes }}</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </section>
+            </article>
+        </section>
+    </section>
+</main>
+{% endblock %}
